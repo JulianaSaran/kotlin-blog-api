@@ -9,5 +9,11 @@ class AuthorSpawner {
             name = "Arthur Dent",
             createdAt = ClockSpawner.now(),
         )
+
+        fun johnDoe() = Author(
+            id = Author.Id("author-yyy"),
+            name = "John Doe",
+            createdAt = ClockSpawner.now(),
+        )
     }
 }

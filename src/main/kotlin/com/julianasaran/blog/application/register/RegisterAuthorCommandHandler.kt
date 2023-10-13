@@ -1,5 +1,6 @@
 package com.julianasaran.blog.application.register
 
+import com.julianasaran.blog.application.AuthorDto
 import com.julianasaran.blog.domain.author.Author
 import com.julianasaran.blog.domain.author.Authors
 
