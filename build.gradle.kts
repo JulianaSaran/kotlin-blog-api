@@ -45,6 +45,7 @@ dependencies {
     implementation("mysql:mysql-connector-java:$mysqlConnectorVersion") // 5.1.13
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
 
     testImplementation(kotlin("test"))
     testImplementation("io.mockk:mockk:$mockk")
