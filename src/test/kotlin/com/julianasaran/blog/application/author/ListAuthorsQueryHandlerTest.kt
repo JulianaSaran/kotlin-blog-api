@@ -1,7 +1,7 @@
-package com.julianasaran.blog.application
+package com.julianasaran.blog.application.author
 
-import com.julianasaran.blog.application.list.ListAuthorsQuery
-import com.julianasaran.blog.application.list.ListAuthorsQueryHandler
+import com.julianasaran.blog.application.author.list.ListAuthorsQuery
+import com.julianasaran.blog.application.author.list.ListAuthorsQueryHandler
 import com.julianasaran.blog.infrastructure.InMemoryAuthors
 import config.spawner.AuthorSpawner
 import org.junit.jupiter.api.Assertions

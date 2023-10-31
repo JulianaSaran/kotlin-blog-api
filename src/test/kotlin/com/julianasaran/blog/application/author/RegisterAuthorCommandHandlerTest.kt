@@ -1,7 +1,7 @@
-package com.julianasaran.blog.application
+package com.julianasaran.blog.application.author
 
-import com.julianasaran.blog.application.register.RegisterAuthorCommand
-import com.julianasaran.blog.application.register.RegisterAuthorCommandHandler
+import com.julianasaran.blog.application.author.register.RegisterAuthorCommand
+import com.julianasaran.blog.application.author.register.RegisterAuthorCommandHandler
 import com.julianasaran.blog.domain.author.Author
 import com.julianasaran.blog.infrastructure.InMemoryAuthors
 import config.TestingUuid

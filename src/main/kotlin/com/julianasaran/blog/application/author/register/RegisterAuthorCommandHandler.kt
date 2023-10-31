@@ -1,6 +1,6 @@
-package com.julianasaran.blog.application.register
+package com.julianasaran.blog.application.author.register
 
-import com.julianasaran.blog.application.AuthorDto
+import com.julianasaran.blog.application.author.AuthorDto
 import com.julianasaran.blog.domain.author.Author
 import com.julianasaran.blog.domain.author.Authors
 
