@@ -11,6 +11,7 @@ class Author(
 ) {
     data class Id(val value: String)
     object NotFound : EntityNotFound("Author")
+
     companion object {
         fun create(name: String) = Author(
             id = Id(UUID.randomUUID().toString()),

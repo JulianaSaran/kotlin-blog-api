@@ -1,4 +1,4 @@
-package com.julianasaran.blog.application.list
+package com.julianasaran.blog.application.author.list
 
 import com.julianasaran.blog.domain.author.Authors
 
