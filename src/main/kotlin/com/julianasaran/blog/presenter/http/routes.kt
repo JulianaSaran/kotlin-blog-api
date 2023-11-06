@@ -18,6 +18,8 @@ import org.http4k.core.Status
 import org.http4k.routing.RoutingHttpHandler
 import org.http4k.routing.routes
 
+// fun Request.id() = path("id")!!.toInt()
+
 fun configureRoutes(authors: Authors, posts: Posts): RoutingHttpHandler {
     val register = RegisterAuthorCommandHandler(authors)
     val finder = ListAuthorsQueryHandler(authors)
@@ -38,9 +40,9 @@ fun configureRoutes(authors: Authors, posts: Posts): RoutingHttpHandler {
             Response(Status.OK).json(response)
         },
 
-        post("/authors/posts") { request ->
-            val r = request.receive<CreatePostCommand.Resquest>()
-            val command = r.command(authorId())
+        post("/authors/posts") { req ->
+            val request = req.receive<CreatePostCommand.Request>()
+            val command = request.command(authorId())
             val response = creator.handler(command)
 
             Response(Status.CREATED).json(response)

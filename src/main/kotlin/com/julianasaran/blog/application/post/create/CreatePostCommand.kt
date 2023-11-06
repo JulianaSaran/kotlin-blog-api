@@ -8,7 +8,7 @@ data class CreatePostCommand(
     val subtitle: String,
     val text: String,
 ) {
-    data class Resquest(val title: String, val subtitle: String, val text: String) {
+    data class Request(val title: String, val subtitle: String, val text: String) {
         fun command(authorId: Author.Id) = CreatePostCommand(
             authorId = authorId,
             title,
