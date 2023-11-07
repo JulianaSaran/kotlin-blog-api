@@ -9,4 +9,8 @@ class InMemoryPosts(
     override fun register(post: Post) {
         items[post.id.value] = post
     }
+
+    override fun loadById(id: Post.Id): Post {
+        return items[id.value] ?: throw Post.NotFound()
+    }
 }
