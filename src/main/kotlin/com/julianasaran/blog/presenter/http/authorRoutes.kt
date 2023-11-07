@@ -1,28 +1,24 @@
 package com.julianasaran.blog.presenter.http
 
-import com.julianasaran.blog.application.author.list.ListAuthorsQuery
-import com.julianasaran.blog.application.author.list.ListAuthorsQueryHandler
 import com.julianasaran.blog.application.author.register.RegisterAuthorCommand
 import com.julianasaran.blog.application.author.register.RegisterAuthorCommandHandler
 import com.julianasaran.blog.application.post.create.CreatePostCommand
 import com.julianasaran.blog.application.post.create.CreatePostCommandHandler
+import com.julianasaran.blog.domain.author.Author
 import com.julianasaran.blog.domain.author.Authors
 import com.julianasaran.blog.domain.post.Posts
-import com.julianasaran.blog.presenter.extension.authorId
-import com.julianasaran.blog.presenter.http.plugins.get
-import com.julianasaran.blog.presenter.http.plugins.json
-import com.julianasaran.blog.presenter.http.plugins.post
-import com.julianasaran.blog.presenter.http.plugins.receive
+import com.julianasaran.blog.presenter.http.plugins.*
 import org.http4k.core.Response
 import org.http4k.core.Status
 import org.http4k.routing.RoutingHttpHandler
 import org.http4k.routing.routes
 
-// fun Request.id() = path("id")!!.toInt()
+fun authorizedAuthorId(): Author.Id {
+    return Author.Id("author-xxx")
+}
 
-fun configureRoutes(authors: Authors, posts: Posts): RoutingHttpHandler {
+fun configureAuthorRoutes(authors: Authors, posts: Posts): RoutingHttpHandler {
     val register = RegisterAuthorCommandHandler(authors)
-    val finder = ListAuthorsQueryHandler(authors)
     val creator = CreatePostCommandHandler(posts)
 
     return routes(
@@ -33,19 +29,24 @@ fun configureRoutes(authors: Authors, posts: Posts): RoutingHttpHandler {
             Response(Status.CREATED).json(response)
         },
 
-        get("/authors") { request ->
-            val query = ListAuthorsQuery(request.query("name") ?: "")
-            val response = finder.handler(query)
-
-            Response(Status.OK).json(response)
+        get("/access-token") {
+            TODO("Not Yet Implemented")
         },
 
-        post("/authors/posts") { req ->
+        post("/posts") { req ->
             val request = req.receive<CreatePostCommand.Request>()
-            val command = request.command(authorId())
+            val command = request.command(authorizedAuthorId())
             val response = creator.handler(command)
 
             Response(Status.CREATED).json(response)
+        },
+
+        put("/posts/{postId}") {
+            TODO("Not Yet Implemented")
+        },
+
+        delete("/posts/{postId}") {
+            TODO("Not Yet Implemented")
         },
     )
 }

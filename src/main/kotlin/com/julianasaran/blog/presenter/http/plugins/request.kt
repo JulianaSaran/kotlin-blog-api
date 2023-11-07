@@ -73,3 +73,5 @@ infix fun PathMethod.handle(action: (Request) -> Response): HttpHandler {
 
 fun get(path: String, handler: (Request) -> Response): HttpHandler = path bind Method.GET handle handler
 fun post(path: String, handler: (Request) -> Response): HttpHandler = path bind Method.POST handle handler
+fun put(path: String, handler: (Request) -> Response): HttpHandler = path bind Method.POST handle handler
+fun delete(path: String, handler: (Request) -> Response): HttpHandler = path bind Method.POST handle handler

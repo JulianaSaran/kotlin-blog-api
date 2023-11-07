@@ -50,6 +50,9 @@ dependencies {
     testImplementation(kotlin("test"))
     testImplementation("io.mockk:mockk:$mockk")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.9.0")
+    testImplementation("io.kotest:kotest-assertions-json-jvm:5.3.0")
+    testImplementation("io.kotest:kotest-assertions-core:5.3.0")
+    testImplementation("io.kotest:kotest-runner-junit5-jvm:5.3.0")
 }
 
 tasks.test {
