@@ -13,4 +13,11 @@ class InMemoryPosts(
     override fun loadById(id: Post.Id): Post {
         return items[id.value] ?: throw Post.NotFound()
     }
+
+    override fun listPosts(): List<Post> {
+        return items
+            .values
+            .filter { it.publishedAt != null }
+            .toList()
+    }
 }

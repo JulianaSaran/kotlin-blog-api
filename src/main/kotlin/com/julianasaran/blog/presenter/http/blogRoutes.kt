@@ -4,6 +4,7 @@ import com.julianasaran.blog.application.author.list.ListAuthorsQuery
 import com.julianasaran.blog.application.author.list.ListAuthorsQueryHandler
 import com.julianasaran.blog.application.post.get.GetPostQuery
 import com.julianasaran.blog.application.post.get.GetPostQueryHandler
+import com.julianasaran.blog.application.post.list.ListPostsQueryHandler
 import com.julianasaran.blog.domain.author.Authors
 import com.julianasaran.blog.domain.post.Post
 import com.julianasaran.blog.domain.post.Posts
@@ -21,10 +22,13 @@ fun Request.id() = path("postId")!!
 fun configureBlogRoutes(authors: Authors, posts: Posts): RoutingHttpHandler {
     val finder = ListAuthorsQueryHandler(authors)
     val getter = GetPostQueryHandler(posts)
+    val list = ListPostsQueryHandler(posts)
 
     return routes(
         get("/posts") {
-            TODO("Not Yet Implemented")
+            val response = list.handler()
+
+            Response(Status.OK).json(response)
         },
 
         get("/posts/{postId}") { request ->
