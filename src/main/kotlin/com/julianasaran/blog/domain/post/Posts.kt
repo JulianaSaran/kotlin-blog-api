@@ -4,4 +4,5 @@ interface Posts {
     fun register(post: Post)
     fun loadById(id: Post.Id): Post
     fun listPosts(): List<Post>
+    fun publish(post: Post)
 }

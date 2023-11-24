@@ -20,4 +20,8 @@ class InMemoryPosts(
             .filter { it.publishedAt != null }
             .toList()
     }
+
+    override fun publish(post: Post) {
+        items[post.id.value] = post
+    }
 }
