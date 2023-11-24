@@ -12,10 +12,13 @@ class Post(
     val subtitle: String,
     val text: String,
     val createdAt: LocalDateTime,
-    val publishedAt: LocalDateTime?,
+    publishedAt: LocalDateTime?,
 ) {
     data class Id(val value: String)
     class NotFound : EntityNotFound("Post")
+
+    var publishedAt = publishedAt
+        private set
 
     companion object {
         fun create(authorId: Author.Id, title: String, subtitle: String, text: String) = Post(
@@ -27,5 +30,9 @@ class Post(
             createdAt = LocalDateTime.now(),
             publishedAt = null,
         )
+    }
+
+    fun updatePublishedAt() {
+        this.publishedAt = LocalDateTime.now()
     }
 }

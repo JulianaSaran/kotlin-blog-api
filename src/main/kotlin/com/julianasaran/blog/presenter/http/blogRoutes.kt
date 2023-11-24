@@ -5,11 +5,14 @@ import com.julianasaran.blog.application.author.list.ListAuthorsQueryHandler
 import com.julianasaran.blog.application.post.get.GetPostQuery
 import com.julianasaran.blog.application.post.get.GetPostQueryHandler
 import com.julianasaran.blog.application.post.list.ListPostsQueryHandler
+import com.julianasaran.blog.application.post.published.PublishPostCommand
+import com.julianasaran.blog.application.post.published.PublishPostCommandHandler
 import com.julianasaran.blog.domain.author.Authors
 import com.julianasaran.blog.domain.post.Post
 import com.julianasaran.blog.domain.post.Posts
 import com.julianasaran.blog.presenter.http.plugins.get
 import com.julianasaran.blog.presenter.http.plugins.json
+import com.julianasaran.blog.presenter.http.plugins.post
 import org.http4k.core.Request
 import org.http4k.core.Response
 import org.http4k.core.Status
@@ -23,6 +26,7 @@ fun configureBlogRoutes(authors: Authors, posts: Posts): RoutingHttpHandler {
     val finder = ListAuthorsQueryHandler(authors)
     val getter = GetPostQueryHandler(posts)
     val list = ListPostsQueryHandler(posts)
+    val published = PublishPostCommandHandler(posts)
 
     return routes(
         get("/posts") {
@@ -51,6 +55,13 @@ fun configureBlogRoutes(authors: Authors, posts: Posts): RoutingHttpHandler {
 
         get("/authors/{authorId}") {
             TODO("Not Yet Implemented")
+        },
+
+        post("/posts/{postId}/publish") { req ->
+            val command = PublishPostCommand(Post.Id(req.id()))
+            val response = published.handler(command)
+
+            Response(Status.NO_CONTENT).json(response)
         },
     )
 }
